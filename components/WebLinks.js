@@ -228,6 +228,10 @@ const ScrollableContainer = styled.div`
     overflow-x: hidden;
     padding: 24px;
 
+           @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+           padding: 0px;
+    }
+
     /* Windows 95 scrollbar styling */
     &::-webkit-scrollbar {
         width: 16px;
@@ -277,7 +281,7 @@ const ScrollableContainer = styled.div`
 `
 
 const TopBarContainer = styled.div`
-  background: var(--ms-blue);
+  background: ${({ theme }) => theme.win95.colors.blue};
   padding: 3px 3px 3px 6px;
   color: ${({ theme }) => theme.text.onPrimary};
   height: 24px;
@@ -342,14 +346,17 @@ const LinkContainer = styled.div`
     left: 50%;
     top: 40px;
     transform: translateX(-50%);
-    background: var(--ms-bar-grey);
+    background: ${({ theme }) => theme.win95.colors.barGrey};
     display: flex;
     flex-direction: column;
     padding: 3px;
-    border-top: 2px solid var(--ms-border-light);
-    border-left: 2px solid var(--ms-border-light);
-    border-bottom: 2px solid var(--ms-gray-shadow);
-    border-right: 2px solid var(--ms-gray-shadow);
+    ${({ theme }) => theme.win95.borders.raised};
+
+    @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+        width: calc(100% - 32px);
+        height: calc(100vh - 80px);
+        top: 20px;
+    }
 `
 
 const LinkHeader = styled.div`
@@ -468,7 +475,6 @@ const LinkBio = styled.div`
 
 const TopPart = styled.div`
 `
-
 const BottomPart = styled.div`
     margin-bottom: 40px;
     

@@ -72,6 +72,11 @@ const BottomBarContainer = styled.div`
    justify-content: space-between;
    align-items: center;
    padding: 2px 4px;
+
+   @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+       height: 32px;
+       padding: 2px;
+   }
 `
 
 const LeftBottomContainer = styled.div`
@@ -92,6 +97,20 @@ const StartButton = styled.button`
    background: var(--ms-bar-grey);
    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
    cursor: pointer;
+
+   @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+       height: 28px;
+       padding: 0 6px;
+       
+       img {
+           height: 20px;
+           width: 20px;
+       }
+       
+       span {
+           font-size: 12px;
+       }
+   }
 
    &:active {
      box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
@@ -135,6 +154,20 @@ const AppButton = styled.button`
    inset -2px -2px #dfdfdf, inset 2px 2px #808080;
    cursor: pointer;
 
+   @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+       height: 28px;
+       padding: 0 8px;
+       
+       img {
+           height: 20px;
+           width: 20px;
+       }
+       
+       span {
+           font-size: 12px;
+       }
+   }
+
    img {
      height: 28px;
      width: 28px;
@@ -155,6 +188,20 @@ const TimeBar = styled.div`
    border: 1px solid var(--ms-gray-shadow);
    border-right: 1px solid var(--ms-border-light);
    border-bottom: 1px solid var(--ms-border-light);
+
+   @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+       height: 28px;
+       padding: 0 6px;
+       
+       img {
+           height: 20px;
+           width: 20px;
+       }
+       
+       time {
+           font-size: 12px;
+       }
+   }
 
    img {
      height: 28px;

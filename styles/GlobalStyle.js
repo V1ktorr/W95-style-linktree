@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.cdnfonts.com/css/w95fa');
-
 body.dark-mode {
   --img: invert(1);
   --avatar-shadow: rgba(28,22,47,.3);

@@ -1,58 +1,34 @@
-import GlobalStyle from "./GlobalStyle"
+import { win95 } from './win95';
+import { deviceSize } from './responsive';
 
-GlobalStyle
 const light = {
     bg: {
-        primary: `var(--ms-green)`,
-        secondary: `var(--light-black)`,
-        tertiary: 'rgba(0,0,0,0.03)',
-        border: "#EAEAEA",
-        inset: '#e2e4e8',
-        input: 'rgba(65,67,78,0.12)',
-        hover: 'linear-gradient(270deg, #FFF7FB 0%, #F4F8FF 100%);',
+        primary: win95.colors.green,
+        secondary: win95.colors.barGrey,
+        tertiary: 'rgba(255,255,255,0.03)',
     },
     text: {
-        primary: `var(--black)`,
-        secondary: 'rgba(0,0,0,0.5)',
-        tertiary: '#646464',
-        quarternary: '#9194a1',
-        placeholder: 'rgba(82,85,96,0.5)',
+        primary: '#000000',
+        secondary: win95.colors.grayShadow,
         onPrimary: '#ffffff',
     },
-
 }
 
 const dark = {
     bg: {
-        primary: `var(--ms-green)`,
-        secondary: `var(--ms-bar-grey)`,
+        primary: win95.colors.green,
+        secondary: win95.colors.barGrey,
         tertiary: 'rgba(255,255,255,0.03)',
-        border: "#EAEAEA",
-        inset: '#111111',
-        input: 'rgba(191,193,201,0.12)',
-        hover: 'linear-gradient(270deg, #131628 0%, #27141C 100%);',
     },
     text: {
-        primary: `var(--black)`,
-        secondary: `var(--ms-gray-shadow)`,
-        tertiary: '#a9abb6',
-        quarternary: '#6c6f7e',
-        placeholder: 'rgba(145,148,161,0.5)',
+        primary: '#000000',
+        secondary: win95.colors.grayShadow,
         onPrimary: '#ffffff',
     },
-    // ...
 }
 
 const defaultTheme = {
-    fontSizes: [
-        '14px', // 0
-        '16px', // 1
-        '18px', // 2
-        '22px', // 3
-        '26px', // 4
-        '32px', // 5
-        '40px', // 6
-    ],
+    fontSizes: ['14px', '16px', '18px', '22px', '26px', '32px', '40px'],
     fontWeights: {
         body: 400,
         subheading: 500,
@@ -65,16 +41,8 @@ const defaultTheme = {
         heading: 1.3,
         code: 1.6,
     },
-    deviceSize: {
-        mobileS: '320px',
-        mobileM: '375px',
-        mobileL: '425px',
-        tablet: '768px',
-        laptop: '1024px',
-        laptopL: '1440px',
-        desktop: '2560px'
-    },
-    // ...
+    deviceSize,
+    win95
 }
 
 export const lightTheme = { ...defaultTheme, ...light }
