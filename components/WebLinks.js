@@ -2,7 +2,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import { Button, ButtonLink, Container, StyledLink } from "./ReusableStyles";
 import Link from "next/link";
-import { ChevronRightIcon, HexIcon, HomeIcon, TwitterIcon, NewUp, OvalIcon } from './icons';
+import { ChevronRightIcon, HexIcon, HomeIcon, TwitterIcon, OvalIcon } from './icons';
 import allLinks from "../data/LinksData";
 import bioData from "../data/BioData";
 
@@ -60,8 +60,8 @@ const Links = () => {
         <LinkContainer>
         <TopBarContainer>
         <div className="left-container">
-        <img className='windowIcon' src={'/facebook.svg'} />
-          <h3>LinkTree.exe</h3>
+        <img className='windowIcon' src={'/P-solo.svg'} />
+          <h3>porokhcreative.space</h3>
         </div>
         <div className="right-container">
        <div className="utilityContainer"> <img className='windowIcon' src={'/minimize.svg'} /></div>
@@ -133,7 +133,11 @@ const Links = () => {
                           return (
                               <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
                                 <LinkBox>
-                                  <LinkTitle><img src={i.icon} /> {i.title}</LinkTitle> <NewUp />
+                                  <LinkTitle>
+                                    <img src={i.icon} />
+                                    <span>{i.title}</span>
+                                  </LinkTitle>
+                                  <img src="/ARROW_WIN.png" style={{ width: "20px", height: "20px" }} />
                                 </LinkBox>
                               </a>
                           )
@@ -152,31 +156,42 @@ const Links = () => {
                       {/* New Section will render once newProduct == true */}
                       {(newProduct) ? <NewSection>
                         <div className="windowBar">
-                        <div className="left-container">
-        <img className='windowIcon' src={'/facebook.svg'} />
-          <h3>LinkTree.exe</h3>
-        </div>
-        <div className="right-container">
-        <div className="utilityContainer"><img className='windowIcon' src={'/minimize.svg'} /> </div>
-        <div className="utilityContainer"><img className='windowIcon' src={'/maximize.svg'} /></div>
-        <div className="utilityContainer"><img className='windowIcon' src={'/cross.svg'} /></div>
-        </div>
-        </div>
-                        <a href={newProductUrl} target="_blank" rel="noreferrer">
-                          <img
+                          <div className="left-container">
+                            <img className='windowIcon' src={'/FIGMA.svg'} />
+                            <h3>banner.exe</h3>
+                          </div>
+                          <div className="right-container">
+                            <div className="utilityContainer">
+                              <img className='windowIcon' src={'/minimize.svg'} />
+                            </div>
+                            <div className="utilityContainer">
+                              <img className='windowIcon' src={'/maximize.svg'} />
+                            </div>
+                            <div className="utilityContainer">
+                              <img className='windowIcon' src={'/cross.svg'} />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="content-wrapper">
+                          <a href={newProductUrl} target="_blank" rel="noreferrer">
+                            <img
                               src={'/newproduct.png'}
                               className="newproduct"
-                          />
-                        </a>
-                      </NewSection> : ''
-                      }
+                            />
+                          </a>
+                        </div>
+                      </NewSection> : ''}
                       {/* End Biodata.js, You can move this section anywhere */}
                       {
                         others.map((i) => {
                           return (
                               <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
                                 <LinkBox>
-                                  <LinkTitle><img src={i.icon} /> {i.title}</LinkTitle> <NewUp />
+                                  <LinkTitle>
+                                    <img src={i.icon} />
+                                    <span>{i.title}</span>
+                                  </LinkTitle>
+                                  <img src="/ARROW_WIN.png" style={{ width: "20px", height: "20px" }} />
                                 </LinkBox>
                               </a>
                           )
@@ -202,47 +217,118 @@ const Links = () => {
 
 export default Links;
 
-const ScrollableContainer = styled.div `
-  padding: 24px;
-  overflow: scroll;
-  overflow-x: hidden;
+const ScrollableContainer = styled.div`
+    background: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: scroll;
+    overflow-x: hidden;
+    padding: 24px;
+
+    /* Windows 95 scrollbar styling */
+    &::-webkit-scrollbar {
+        width: 16px;
+        background: var(--ms-bar-grey);
+    }
+
+    &::-webkit-scrollbar-track {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQYV2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXQdISfAAAAAElFTkSuQmCC');
+        background-repeat: repeat;
+        box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
+                   inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--ms-bar-grey);
+        border: none;
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, 
+                   inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    }
+
+    &::-webkit-scrollbar-button:single-button {
+        background-color: var(--ms-bar-grey);
+        display: block;
+        height: 16px;
+        width: 16px;
+        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, 
+                   inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    }
+
+    /* Up arrow */
+    &::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url('/ARROW_WIN_TOP.png');
+        background-size: 10px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: none;
+    }
+
+    /* Down arrow */
+    &::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url('/ARROW_WIN_BOT.png');
+        background-size: 10px;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: none;
+    }
 `
 
 const TopBarContainer = styled.div`
-  background: blue;
-  padding: 20px 15px;
+  background: var(--ms-blue);
+  padding: 3px 3px 3px 6px;
   color: ${({ theme }) => theme.text.onPrimary};
-  height:30px;
+  height: 24px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 3px;
 
   .windowIcon {
-    height: 15px;
-    width: 15px;
+    height: 16px;
+    width: 16px;
+    margin-right: 4px;
+  }
+
+  h3 {
+    color: white;
+    font-size: 14px;
+    text-transform: none;
+    line-height: 24px;
+  }
+
+  .left-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .right-container {
+    display: flex;
+    gap: 2px;
+    height: 100%;
+    align-items: center;
   }
 
   .utilityContainer {
-    background-color: grey;
-    padding: 3.5px 6px;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-    &:active {
-      box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-      inset -2px -2px #dfdfdf, inset 2px 2px #808080;
-      
-    }
-    &:hover {
-      img {
-        opacity: 0.3;
-      }
-    }
-  }
-
-  .left-container, .right-container {
+    width: 16px;
+    height: 16px;
     display: flex;
-    gap: 10px;
     align-items: center;
+    justify-content: center;
+    background-color: var(--ms-bar-grey);
+    box-shadow: inset -1px -1px #0a0a0a, 
+                inset 1px 1px #fff, 
+                inset -2px -2px grey, 
+                inset 2px 2px #dfdfdf;
+
+    img {
+      height: 12px;
+      width: 12px;
+    }
   }
 `
 
@@ -250,15 +336,20 @@ const LinkWrapper = styled(Container)`
 `
 
 const LinkContainer = styled.div`
+    width: 1000px;
     height: 90vh;
     position: absolute;
-    top: calc((100vh - 30px - 90vh) / 2);
-    background: white;
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    background: var(--ms-bar-grey);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    text-align: center;
+    padding: 3px;
+    border-top: 2px solid var(--ms-border-light);
+    border-left: 2px solid var(--ms-border-light);
+    border-bottom: 2px solid var(--ms-gray-shadow);
+    border-right: 2px solid var(--ms-gray-shadow);
 `
 
 const LinkHeader = styled.div`
@@ -305,43 +396,24 @@ const Title = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    h1{
+    h1 {
       font-size: 38px;
-      font-weight: 700;
-      letter-spacing: -2px;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: black;
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+      background-clip: initial;
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
         font-size: 32px;
       }
     }
-    h3{
-      margin-top:6px;
+    h3 {
+      margin-top: 6px;
       font-size: 18px;
-      font-weight: 500;
-      letter-spacing: -.7px;
       color: ${({ theme }) => theme.text.secondary};
       opacity: .5;
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
         font-size: 15px;
-        margin-top:2px;
-      }
-    }
-    
-    .name{
-      margin-top: 8px;
-      @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
-        width: 140px;
-      }
-    }
-
-    .handle{
-      height: 32px;
-      margin-top: 6px;
-      margin-bottom: 6px;
-      @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
-        height: 26px;
+        margin-top: 2px;
       }
     }
 `
@@ -437,22 +509,21 @@ const LinkSection = styled.div`
     margin: 0 auto;
     max-width: 400px;
     flex-direction: column;
-    &.social{
+    &.social {
       max-width: max-content;
       padding: 0;
       margin-bottom: 18px;
     }
-    .iconsonly{
+    .iconsonly {
       display: flex;
       justify-content: center;
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
         flex-wrap: wrap;
       }
     }
-    h3{
+    h3 {
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 4px;
       margin-bottom: 4px;
       color: ${({ theme }) => theme.text.secondary};
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
@@ -472,8 +543,6 @@ const LinkBox = styled.div`
     justify-content: space-between;
     cursor: pointer;
     font-size: 16px;
-    font-weight: 600;
-    letter-spacing: -.5px;
     position: relative;
     text-align: center;
 
@@ -496,9 +565,9 @@ const LinkBox = styled.div`
       transform: scale(0.8);
     }
 
-    .new-up{
-      transform: scale(.8);
-      opacity: .7;
+    .new-up {
+      width: 20px;
+      height: 20px;
     }
     
     &.socialIcon{
@@ -527,62 +596,89 @@ const LinkTitle = styled.div`
   display: flex;
   font-size: 18px;
   align-items: center;
-    @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
-      font-size: 14px;
-    }
-    img{
-      height: 20px;
-      margin-right: 10px;
-    }
+  @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+    font-size: 14px;
+  }
+  img {
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  span::first-letter {
+    text-decoration: underline;
+  }
 `
 
 const NewSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px 20px;
-    .newproduct{
-      width: 100%;
-      border: 1px solid ${({ theme }) => theme.bg.secondary};
-      cursor: pointer;
-    }
-    .windowBar {
-      padding: 5px 15px;
-      background-color: blue;
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
+  margin: 20px;
+  padding: 3px;
+  background: var(--ms-bar-grey);
+  /* Vnější okraj okna - světlý vlevo a nahoře, tmavý vpravo a dole */
+  border-top: 2px solid var(--ms-border-light);
+  border-left: 2px solid var(--ms-border-light);
+  border-bottom: 2px solid var(--ms-gray-shadow);
+  border-right: 2px solid var(--ms-gray-shadow);
 
-    h3 {
-      color: white;
-    }
+  .windowBar {
+    background: var(--ms-blue);
+    padding: 3px 3px 3px 6px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-    .left-container, .right-container {
+    .left-container {
       display: flex;
-      font-size: 18px;
-      gap: 10px;
       align-items: center;
+      height: 100%;
+      
+      .windowIcon {
+        height: 16px;
+        width: 16px;
+        margin-right: 4px;
+      }
+
+      h3 {
+        color: white;
+        font-size: 14px;
+        text-transform: none;
+        line-height: 24px;
+      }
     }
 
-    .windowIcon {
-      height: 13px;
-      width: 13px;
-    }
-  
-    .utilityContainer {
-      background-color: grey;
-      padding: 3.5px 6px;
-      box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
-      &:active {
-        box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-        inset -2px -2px #dfdfdf, inset 2px 2px #808080;
-        
-      }
-      &:hover {
+    .right-container {
+      display: flex;
+      gap: 2px;
+      height: 100%;
+      align-items: center;
+
+      .utilityContainer {
+        width: 16px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--ms-bar-grey);
+        box-shadow: inset -1px -1px #0a0a0a, 
+                    inset 1px 1px #fff, 
+                    inset -2px -2px grey, 
+                    inset 2px 2px #dfdfdf;
+
         img {
-          opacity: 0.3;
+          height: 12px;
+          width: 12px;
         }
       }
     }
+  }
+
+  .content-wrapper {
+    margin-top: 3px;
+    background: var(--ms-bar-grey);
+  }
+
+  .newproduct {
+    width: 100%;
+    display: block;
+  }
 `

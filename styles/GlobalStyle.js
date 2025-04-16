@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.cdnfonts.com/css/w95fa');
+
 body.dark-mode {
   --img: invert(1);
   --avatar-shadow: rgba(28,22,47,.3);
@@ -35,10 +37,12 @@ body.light-mode {
   --light-black: rgba(0,0,0,.05);
   --light-white: rgba(255,255,255,.03);
 
-  --ms-blue: #02007F;
+  --ms-blue: #000080;
   --ms-green: #008282;
-  --ms-bar-grey: #C3C3C3;
-  --ms-gray-shadow: #7E7E7E;
+  --ms-bar-grey: #C0C0C0;
+  --ms-gray-shadow: #808080;
+  --ms-border-light: #FFFFFF;
+  --ms-border-dark: #808080;
   
   margin: 0;
   padding: 0;
@@ -54,7 +58,7 @@ html{
     scroll-behavior: smooth;
 }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'W95FA', sans-serif;
   background: ${({ theme }) => theme.bg.primary};
   color: ${({ theme }) => theme.text.primary};
   text-rendering: optimizeLegibility;
