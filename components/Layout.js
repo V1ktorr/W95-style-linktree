@@ -100,7 +100,8 @@ const StartButton = styled.button`
    gap: 4px;
    border: none;
    background: ${({ theme }) => theme.win95.colors.barGrey};
-   box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+   box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+               inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
    cursor: pointer;
 
    @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
@@ -118,8 +119,8 @@ const StartButton = styled.button`
    }
 
    &:active {
-     box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-     inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+     box-shadow: inset -1px -1px var(--ms-border-light), inset 1px 1px var(--ms-gray-shadow),
+     inset -2px -2px var(--ms-border-light), inset 2px 2px var(--ms-gray-shadow);
    }
 
    img {
@@ -159,8 +160,8 @@ const AppButton = styled.button`
    gap: 4px;
    border: none;
    background: ${({ theme }) => theme.win95.colors.barGrey};
-   box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-   inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+   box-shadow: inset -1px -1px var(--ms-border-light), inset 1px 1px var(--ms-gray-shadow),
+   inset -2px -2px var(--ms-border-light), inset 2px 2px var(--ms-gray-shadow);
    cursor: pointer;
 
    @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
@@ -234,13 +235,14 @@ const ThemeToggle = styled.button`
    justify-content: center;
    background: ${({ theme }) => theme.win95.colors.barGrey};
    border: none;
-   box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+   box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+               inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
    cursor: pointer;
    margin-right: 4px;
    
    &:active {
-     box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-     inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+     box-shadow: inset -1px -1px var(--ms-border-light), inset 1px 1px var(--ms-gray-shadow),
+     inset -2px -2px var(--ms-border-light), inset 2px 2px var(--ms-gray-shadow);
    }
    
    img {

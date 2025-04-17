@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ChevronRightIcon, HexIcon, HomeIcon, TwitterIcon, OvalIcon } from './icons';
 import allLinks from "../data/LinksData";
 import bioData from "../data/BioData";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 
 
@@ -53,6 +55,36 @@ const Links = () => {
   // Get data for other section
   const others = allLinks.filter((el) => {
     return el.type === "other" && el.on
+  });
+
+  // Získáme kontext tématu
+  const { isDarkMode } = useContext(ThemeContext);
+
+  // Upravíme odkazy pro tmavý režim
+  const processedOthers = others.map(link => {
+    if (isDarkMode && link.icon === '/GIT_WIN.png') {
+      return { ...link, icon: '/GIT_WIN_WHITE.png' };
+    }
+    return link;
+  });
+
+  const processedSocial = social.map(link => {
+    if (isDarkMode) {
+      if (link.icon === '/GIT_WIN.png') {
+        return { ...link, icon: '/GIT_WIN_WHITE.png' };
+      }
+      if (link.icon.endsWith('.svg')) {
+        return { ...link, useFilter: true };
+      }
+    }
+    return link;
+  });
+
+  const processedInstall = install.map(link => {
+    if (isDarkMode && link.icon === '/GIT_WIN.png') {
+      return { ...link, icon: '/GIT_WIN_WHITE.png' };
+    }
+    return link;
   });
 
   return (
@@ -109,11 +141,14 @@ const Links = () => {
               <LinkSection className="social">
                 <div className="iconsonly">
                   {
-                    social.map((i) => {
+                    processedSocial.map((i) => {
                       return (
                           <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
                             <LinkBox className="socialIcon">
-                              <img src={i.icon} />
+                              <img 
+                                src={i.icon} 
+                                style={i.useFilter ? { filter: 'brightness(0) invert(1)' } : {}}
+                              />
                             </LinkBox>
                           </a>
                       )
@@ -125,11 +160,11 @@ const Links = () => {
 
               {/* Install Section */}
               {
-                install.length > 0 ?
+                processedInstall.length > 0 ?
                     <LinkSection>
-                      <h3>{install[0].type}</h3>
+                      <h3>{processedInstall[0].type}</h3>
                       {
-                        install.map((i) => {
+                        processedInstall.map((i) => {
                           return (
                               <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
                                 <LinkBox>
@@ -137,7 +172,10 @@ const Links = () => {
                                     <img src={i.icon} />
                                     <span>{i.title}</span>
                                   </LinkTitle>
-                                  <img src="/ARROW_WIN.png" style={{ width: "20px", height: "20px" }} />
+                                  <img 
+                                    src={isDarkMode ? "/ARROW_WIN_WHITE.png" : "/ARROW_WIN.png"} 
+                                    style={{ width: "20px", height: "20px" }} 
+                                  />
                                 </LinkBox>
                               </a>
                           )
@@ -149,9 +187,9 @@ const Links = () => {
 
               {/* Other Section */}
               {
-                others.length > 0 ?
+                processedOthers.length > 0 ?
                     <LinkSection>
-                      <h3>{others[0].type}</h3>
+                      <h3>{processedOthers[0].type}</h3>
                       {/* BioData.js > newProduct == true */}
                       {/* New Section will render once newProduct == true */}
                       {(newProduct) ? <NewSection>
@@ -183,7 +221,7 @@ const Links = () => {
                       </NewSection> : ''}
                       {/* End Biodata.js, You can move this section anywhere */}
                       {
-                        others.map((i) => {
+                        processedOthers.map((i) => {
                           return (
                               <a href={i.url} key={i.title} target="_blank" rel="noreferrer">
                                 <LinkBox>
@@ -191,7 +229,10 @@ const Links = () => {
                                     <img src={i.icon} />
                                     <span>{i.title}</span>
                                   </LinkTitle>
-                                  <img src="/ARROW_WIN.png" style={{ width: "20px", height: "20px" }} />
+                                  <img 
+                                    src={isDarkMode ? "/ARROW_WIN_WHITE.png" : "/ARROW_WIN.png"} 
+                                    style={{ width: "20px", height: "20px" }} 
+                                  />
                                 </LinkBox>
                               </a>
                           )
@@ -228,42 +269,44 @@ const ScrollableContainer = styled.div`
     overflow-x: hidden;
     padding: 24px;
 
-           @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
-           padding: 0px;
+    @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+        padding: 0px;
     }
 
     /* Windows 95 scrollbar styling */
     &::-webkit-scrollbar {
         width: 16px;
-        background: var(--ms-bar-grey);
+        background: ${({ theme }) => theme.win95.colors.barGrey};
     }
 
     &::-webkit-scrollbar-track {
-        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQYV2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXQdISfAAAAAElFTkSuQmCC');
+        background-image: ${({ theme }) => theme.isDarkMode ? 
+            `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAGklEQVQYV2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXQdISfAAAAAElFTkSuQmCC')` : 
+            `url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQYV2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXQdISfAAAAAElFTkSuQmCC')`};
         background-repeat: repeat;
-        box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-                   inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+        box-shadow: inset -1px -1px var(--ms-border-light), inset 1px 1px var(--ms-gray-shadow),
+                   inset -2px -2px var(--ms-border-light), inset 2px 2px var(--ms-gray-shadow);
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--ms-bar-grey);
+        background: ${({ theme }) => theme.win95.colors.barGrey}; /* Použije barvu lišty podle tématu */
         border: none;
-        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, 
-                   inset -2px -2px grey, inset 2px 2px #dfdfdf;
+        box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+                   inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
     }
 
     &::-webkit-scrollbar-button:single-button {
-        background-color: var(--ms-bar-grey);
+        background-color: ${({ theme }) => theme.win95.colors.barGrey};
         display: block;
         height: 16px;
         width: 16px;
-        box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, 
-                   inset -2px -2px grey, inset 2px 2px #dfdfdf;
+        box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+                   inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
     }
 
     /* Up arrow */
     &::-webkit-scrollbar-button:single-button:vertical:decrement {
-        background-image: url('/ARROW_WIN_TOP.png');
+        background-image: url(${({ theme }) => theme.isDarkMode ? "'/ARROW_WIN_TOP_WHITE.png'" : "'/ARROW_WIN_TOP.png'"});
         background-size: 10px;
         background-repeat: no-repeat;
         background-position: center;
@@ -272,7 +315,7 @@ const ScrollableContainer = styled.div`
 
     /* Down arrow */
     &::-webkit-scrollbar-button:single-button:vertical:increment {
-        background-image: url('/ARROW_WIN_BOT.png');
+        background-image: url(${({ theme }) => theme.isDarkMode ? "'/ARROW_WIN_BOT_WHITE.png'" : "'/ARROW_WIN_BOT.png'"});
         background-size: 10px;
         background-repeat: no-repeat;
         background-position: center;
@@ -323,15 +366,16 @@ const TopBarContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--ms-bar-grey);
-    box-shadow: inset -1px -1px #0a0a0a, 
-                inset 1px 1px #fff, 
-                inset -2px -2px grey, 
-                inset 2px 2px #dfdfdf;
+    background-color: ${({ theme }) => theme.win95.colors.barGrey};
+    box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+                inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
 
     img {
       height: 12px;
       width: 12px;
+      filter: ${({ theme }) => theme.isDarkMode ? 'brightness(0) invert(1)' : 'none'};
+      display: block;
+      margin: 0 auto;
     }
   }
 `
@@ -558,7 +602,8 @@ const LinkBox = styled.div`
     background: ${({ theme }) => theme.bg.secondary};
     color: ${({ theme }) => theme.text.primary};
     margin: 8px 18px;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px var(--ms-border-light), inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+                inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
     flex-direction: row;
     display: flex;
     align-items: center;
@@ -569,13 +614,12 @@ const LinkBox = styled.div`
     text-align: center;
 
     &:active {
-      box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
-      inset -2px -2px #dfdfdf, inset 2px 2px #808080;
-      
+      box-shadow: inset -1px -1px var(--ms-border-light), inset 1px 1px var(--ms-gray-shadow),
+      inset -2px -2px var(--ms-border-light), inset 2px 2px var(--ms-gray-shadow);
     }
-        &:hover{
-    outline: 2px dotted #000000;
-    outline-offset: -7px;
+    &:hover {
+        outline: 2px dotted ${({ theme }) => theme.text.primary};
+        outline-offset: -7px;
     }
     &::before{
       content: "";
@@ -684,14 +728,15 @@ const NewSection = styled.div`
         align-items: center;
         justify-content: center;
         background-color: ${({ theme }) => theme.win95.colors.barGrey};
-        box-shadow: inset -1px -1px #0a0a0a, 
-                    inset 1px 1px #fff, 
-                    inset -2px -2px grey, 
-                    inset 2px 2px #dfdfdf;
+        box-shadow: inset -1px -1px var(--ms-gray-shadow), inset 1px 1px var(--ms-border-light), 
+                    inset -2px -2px var(--ms-gray-shadow), inset 2px 2px var(--ms-border-light);
 
         img {
           height: 12px;
           width: 12px;
+          filter: ${({ theme }) => theme.isDarkMode ? 'brightness(0) invert(1)' : 'none'};
+          display: block;
+          margin: 0 auto;
         }
       }
     }

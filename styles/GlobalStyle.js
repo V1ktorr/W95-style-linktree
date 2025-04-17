@@ -9,8 +9,8 @@ body.dark-mode {
   --ms-blue: #000066;
   --ms-green: #006666;
   --ms-bar-grey: #3b3b3b;
-  --ms-gray-shadow: #202020;
-  --ms-border-light: #606060;
+  --ms-gray-shadow: #313131;
+  --ms-border-light: #6c6c6c;
   --ms-border-dark: #000000;
   --ms-text: #FFFFFF;
   --ms-window-bg: #454545;
@@ -56,11 +56,6 @@ body.light-mode {
   --gray: #687076;
   --light-black: rgba(0,0,0,.05);
   --light-white: rgba(255,255,255,.03);
-
-  --ms-bar-grey: #C0C0C0;
-  --ms-gray-shadow: #808080;
-  --ms-border-light: #FFFFFF;
-  --ms-border-dark: #808080;
   
   margin: 0;
   padding: 0;

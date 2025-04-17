@@ -4,7 +4,7 @@ const webLinks = [
         title: 'Pinterest',
         url: 'https://twitter.com/realvjy',
         type: 'social',
-        icon: '/twitter.svg',
+        icon: '/PINTEREST.svg',
         on: true
     },
     {
