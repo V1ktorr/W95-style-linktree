@@ -218,7 +218,7 @@ const Links = () => {
 export default Links;
 
 const ScrollableContainer = styled.div`
-    background: white;
+    background: ${({ theme }) => theme.win95.colors.windowBg};
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -363,8 +363,8 @@ const LinkHeader = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
-    margin-bottom: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px; 
     @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
        margin-top: 20px;
     }
@@ -405,7 +405,7 @@ const Title = styled.div`
     align-items: center;
     h1 {
       font-size: 38px;
-      color: black;
+      color: ${({ theme }) => theme.text.primary};
       -webkit-background-clip: initial;
       -webkit-text-fill-color: initial;
       background-clip: initial;
@@ -422,6 +422,11 @@ const Title = styled.div`
         font-size: 15px;
         margin-top: 2px;
       }
+      
+      a {
+        color: ${({ theme }) => theme.text.secondary};
+        text-decoration: none;
+      }
     }
 `
 
@@ -434,6 +439,7 @@ const LinkBio = styled.div`
       font-weight: 500;
       letter-spacing: -0.6px;
       padding: 0 20px;
+      color: ${({ theme }) => theme.text.primary};
       @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
         font-size: 18px;
         line-height: 26px;
@@ -466,6 +472,7 @@ const LinkBio = styled.div`
       a{
          font-weight: 700;
          opacity: .7;
+         color: ${({ theme }) => theme.text.secondary};
          &:hover{
           opacity: 1;
          }
@@ -498,6 +505,14 @@ const LinkFoot = styled.div`
         opacity: .6;
         @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
           font-size: 8px;
+        }
+      }
+      a {
+        color: ${({ theme }) => theme.text.secondary};
+        font-weight: 700;
+        opacity: .7;
+        &:hover{
+          opacity: 1;
         }
       }
     }
@@ -541,8 +556,9 @@ const LinkSection = styled.div`
 const LinkBox = styled.div`
     padding: 18px 20px;
     background: ${({ theme }) => theme.bg.secondary};
+    color: ${({ theme }) => theme.text.primary};
     margin: 8px 18px;
-    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px var(--ms-border-light), inset -2px -2px grey, inset 2px 2px #dfdfdf;
     flex-direction: row;
     display: flex;
     align-items: center;
@@ -602,6 +618,8 @@ const LinkTitle = styled.div`
   display: flex;
   font-size: 18px;
   align-items: center;
+  color: ${({ theme }) => theme.text.primary};
+  
   @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
     font-size: 14px;
   }
@@ -618,7 +636,8 @@ const LinkTitle = styled.div`
 const NewSection = styled.div`
   margin: 20px;
   padding: 3px;
-  background: var(--ms-bar-grey);
+  aspect-ratio: 1/1;
+  background: ${({ theme }) => theme.win95.colors.barGrey};
   /* Vnější okraj okna - světlý vlevo a nahoře, tmavý vpravo a dole */
   border-top: 2px solid var(--ms-border-light);
   border-left: 2px solid var(--ms-border-light);
@@ -626,7 +645,7 @@ const NewSection = styled.div`
   border-right: 2px solid var(--ms-gray-shadow);
 
   .windowBar {
-    background: var(--ms-blue);
+    background: ${({ theme }) => theme.win95.colors.blue};
     padding: 3px 3px 3px 6px;
     height: 24px;
     display: flex;
@@ -664,7 +683,7 @@ const NewSection = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: var(--ms-bar-grey);
+        background-color: ${({ theme }) => theme.win95.colors.barGrey};
         box-shadow: inset -1px -1px #0a0a0a, 
                     inset 1px 1px #fff, 
                     inset -2px -2px grey, 
@@ -680,7 +699,7 @@ const NewSection = styled.div`
 
   .content-wrapper {
     margin-top: 3px;
-    background: var(--ms-bar-grey);
+    background: ${({ theme }) => theme.win95.colors.barGrey};
   }
 
   .newproduct {

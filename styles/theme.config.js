@@ -1,49 +1,53 @@
-import { win95 } from './win95';
-import { deviceSize } from './responsive';
+import { device, deviceSize } from './responsive';
 
-const light = {
+const lightTheme = {
     bg: {
-        primary: win95.colors.green,
-        secondary: win95.colors.barGrey,
-        tertiary: 'rgba(255,255,255,0.03)',
+        primary: '#008080', // Windows 95 pozadí
+        secondary: 'var(--ms-link-box-bg)',
     },
     text: {
-        primary: '#000000',
-        secondary: win95.colors.grayShadow,
-        onPrimary: '#ffffff',
+        primary: 'var(--ms-text)',
+        secondary: 'var(--ms-text)',
+        onPrimary: '#FFFFFF',
     },
-}
-
-const dark = {
-    bg: {
-        primary: win95.colors.green,
-        secondary: win95.colors.barGrey,
-        tertiary: 'rgba(255,255,255,0.03)',
-    },
-    text: {
-        primary: '#000000',
-        secondary: win95.colors.grayShadow,
-        onPrimary: '#ffffff',
-    },
-}
-
-const defaultTheme = {
-    fontSizes: ['14px', '16px', '18px', '22px', '26px', '32px', '40px'],
-    fontWeights: {
-        body: 400,
-        subheading: 500,
-        link: 600,
-        bold: 700,
-        heading: 800,
-    },
-    lineHeights: {
-        body: 1.5,
-        heading: 1.3,
-        code: 1.6,
+    win95: {
+        colors: {
+            blue: 'var(--ms-blue)',
+            green: 'var(--ms-green)',
+            barGrey: 'var(--ms-bar-grey)',
+            windowBg: 'var(--ms-window-bg)',
+        },
+        borders: {
+            raised: `
+                border-top: 2px solid var(--ms-border-light);
+                border-left: 2px solid var(--ms-border-light);
+                border-bottom: 2px solid var(--ms-gray-shadow);
+                border-right: 2px solid var(--ms-gray-shadow);
+            `,
+            sunken: `
+                border-top: 2px solid var(--ms-gray-shadow);
+                border-left: 2px solid var(--ms-gray-shadow);
+                border-bottom: 2px solid var(--ms-border-light);
+                border-right: 2px solid var(--ms-border-light);
+            `,
+        },
     },
     deviceSize,
-    win95
-}
+};
 
-export const lightTheme = { ...defaultTheme, ...light }
-export const darkTheme = { ...defaultTheme, ...dark }
+const darkTheme = {
+    ...lightTheme,
+    bg: {
+        ...lightTheme.bg,
+        primary: '#9d9d9d', // Změněno na světle šedou pro tmavý režim
+    },
+    win95: {
+        ...lightTheme.win95,
+        colors: {
+            ...lightTheme.win95.colors,
+            barGrey: '#3b3b3b', // Explicitně nastavíme barvu pro tmavý režim
+        }
+    }
+};
+
+export { lightTheme, darkTheme };

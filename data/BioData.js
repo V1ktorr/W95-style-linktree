@@ -6,7 +6,7 @@ const bioData = [
         titleImg: false,
         avatar: '/avatar.png',
         nftAvatar: true,
-        description: 'Creative coder and web designer based in Brno',
+        description: 'Creative UX/UI Designer based in Brno',
         descShow: true,
         subdesc: 'Also grab some freebies on my website',
         subdescShow: false,

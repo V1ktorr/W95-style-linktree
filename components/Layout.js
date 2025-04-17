@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 import ReactDOM from 'react-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 export default function Layout({ children }) {
     const [time, setTime] = useState(new Date());
+    const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -40,6 +42,9 @@ export default function Layout({ children }) {
                     </RunningApps>
                 </LeftBottomContainer>
                 <TimeBar>
+                    <ThemeToggle onClick={toggleDarkMode}>
+                        <img src={isDarkMode ? "/SUN.svg" : "/MOON.svg"} alt="Theme" />
+                    </ThemeToggle>
                     <img src="/SOUND.svg" alt="Speaker" />
                     <time>{formatTime(time)}</time>
                 </TimeBar>
@@ -66,7 +71,7 @@ const BottomBarContainer = styled.div`
    bottom: 0;
    left: 0;
    height: 40px;
-   background: var(--ms-bar-grey);
+   background: ${({ theme }) => theme.win95.colors.barGrey};
    border-top: 2px solid var(--ms-border-light);
    display: flex;
    justify-content: space-between;
@@ -94,7 +99,7 @@ const StartButton = styled.button`
    align-items: center;
    gap: 4px;
    border: none;
-   background: var(--ms-bar-grey);
+   background: ${({ theme }) => theme.win95.colors.barGrey};
    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
    cursor: pointer;
 
@@ -125,6 +130,7 @@ const StartButton = styled.button`
    span {
      font-family: 'W95FA', sans-serif;
      font-size: 14px;
+     color: ${({ theme }) => theme.text.primary};
    }
 `
 
@@ -133,6 +139,9 @@ const Divider = styled.div`
    height: 34px;
    background: var(--ms-gray-shadow);
    border-right: 1px solid var(--ms-border-light);
+      @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+       height: 20px;
+   }
 `
 
 const RunningApps = styled.div`
@@ -149,7 +158,7 @@ const AppButton = styled.button`
    align-items: center;
    gap: 4px;
    border: none;
-   background: var(--ms-bar-grey);
+   background: ${({ theme }) => theme.win95.colors.barGrey};
    box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
    inset -2px -2px #dfdfdf, inset 2px 2px #808080;
    cursor: pointer;
@@ -176,6 +185,7 @@ const AppButton = styled.button`
    span {
      font-family: 'W95FA', sans-serif;
      font-size: 14px;
+     color: ${({ theme }) => theme.text.primary};
    }
 `
 
@@ -188,6 +198,7 @@ const TimeBar = styled.div`
    border: 1px solid var(--ms-gray-shadow);
    border-right: 1px solid var(--ms-border-light);
    border-bottom: 1px solid var(--ms-border-light);
+   background: ${({ theme }) => theme.win95.colors.barGrey};
 
    @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
        height: 28px;
@@ -211,5 +222,39 @@ const TimeBar = styled.div`
    time {
      font-family: 'W95FA', sans-serif;
      font-size: 14px;
+     color: ${({ theme }) => theme.text.primary};
+   }
+`
+
+const ThemeToggle = styled.button`
+   height: 28px;
+   width: 28px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: ${({ theme }) => theme.win95.colors.barGrey};
+   border: none;
+   box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+   cursor: pointer;
+   margin-right: 4px;
+   
+   &:active {
+     box-shadow: inset -1px -1px #ffffff, inset 1px 1px #0a0a0a,
+     inset -2px -2px #dfdfdf, inset 2px 2px #808080;
+   }
+   
+   img {
+     height: 20px;
+     width: 20px;
+   }
+   
+   @media screen and (max-width: ${({ theme }) => theme.deviceSize.tablet}) {
+       height: 24px;
+       width: 24px;
+       
+       img {
+           height: 16px;
+           width: 16px;
+       }
    }
 `

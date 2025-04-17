@@ -4,11 +4,33 @@ const GlobalStyle = createGlobalStyle`
 body.dark-mode {
   --img: invert(1);
   --avatar-shadow: rgba(28,22,47,.3);
+  
+  /* Windows 95 tmavý režim barvy */
+  --ms-blue: #000066;
+  --ms-green: #006666;
+  --ms-bar-grey: #3b3b3b;
+  --ms-gray-shadow: #202020;
+  --ms-border-light: #606060;
+  --ms-border-dark: #000000;
+  --ms-text: #FFFFFF;
+  --ms-window-bg: #454545;
+  --ms-link-box-bg: #303030;
 }
 
 body.light-mode {
   --img: invert(0);
   --avatar-shadow: rgba(48,52,77,.1);
+  
+  /* Windows 95 světlý režim barvy */
+  --ms-blue: #000080;
+  --ms-green: #008282;
+  --ms-bar-grey: #C0C0C0;
+  --ms-gray-shadow: #808080;
+  --ms-border-light: #FFFFFF;
+  --ms-border-dark: #808080;
+  --ms-text: #000000;
+  --ms-window-bg: #FFFFFF;
+  --ms-link-box-bg: #C0C0C0;
 } 
 
 * {
@@ -35,8 +57,6 @@ body.light-mode {
   --light-black: rgba(0,0,0,.05);
   --light-white: rgba(255,255,255,.03);
 
-  --ms-blue: #000080;
-  --ms-green: #008282;
   --ms-bar-grey: #C0C0C0;
   --ms-gray-shadow: #808080;
   --ms-border-light: #FFFFFF;
