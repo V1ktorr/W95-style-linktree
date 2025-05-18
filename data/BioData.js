@@ -10,10 +10,10 @@ const bioData = [
         descShow: true,
         subdesc: 'Also grab some freebies on my website',
         subdescShow: false,
-        newProductUrl: 'https://3dicons.co',
+        newProductUrl: 'https://www.porokhcreative.space',
         newProduct: true,
         author: 'prkhvv',
-        authorURL: 'https://twitter.com/realvjy',
+        authorURL: 'https://www.porokhcreative.space',
         footerText: 'made by'
     },
 ];
